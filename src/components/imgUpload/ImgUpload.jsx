@@ -1,5 +1,33 @@
+import { useState } from "react";
 import "./ImgUpload.css";
+import beeImg from "../../assets/bee.jpg";
 const ImgUpload = () => {
+  const [image, setImage] = useState({ preview: "", raw: "" });
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image.raw);
+
+    // await fetch("YOUR_URL", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formData,
+    // });
+    console.log(formData);
+  };
+
+  const handleChange = (e) => {
+    if (e.target.files.length) {
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -9,22 +37,22 @@ const ImgUpload = () => {
       </div>
 
       <div className="imgupload-container">
-        <form onSubmit={(e) => console.log(e.target.value)}>
-          <input
-            className="fileInput"
-            type="file"
-            onChange={(e) => console.log(e.target.value)}
-          />
-          <button
-            className="submitButton"
-            type="submit"
-            onClick={(e) => console.log(e.target.value)}
-          >
+        <form onSubmit={handleUpload}>
+          <input className="fileInput" type="file" onChange={handleChange} />
+          <button className="submitButton" type="submit">
             Upload Image
           </button>
         </form>
       </div>
-      <div className="preview"></div>
+      <div className="preview">
+        <h2>Preview</h2>
+        <img src={image.preview} className="preview-img" alt="" />
+      </div>
+      <div className="prediction">
+        <h2>
+          Status: <span>Healthy</span>
+        </h2>
+      </div>
     </div>
   );
 };
