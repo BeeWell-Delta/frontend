@@ -77,4 +77,14 @@ button:focus-visible {
   box-sizing: border-box;
 }
 
+a button {
+  text-decoration: none;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;800;900&display=swap"); */

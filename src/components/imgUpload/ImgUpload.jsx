@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./ImgUpload.css";
-import beeImg from "../../assets/bee.jpg";
 const ImgUpload = () => {
   const [image, setImage] = useState({ preview: "", raw: "" });
 
@@ -31,9 +31,11 @@ const ImgUpload = () => {
   return (
     <div className="container">
       <div className="header">
-        <h2>
-          Bee<span>Well.</span>
-        </h2>
+        <Link to="/">
+          <h2>
+            Bee<span>Well.</span>
+          </h2>
+        </Link>
       </div>
 
       <div className="imgupload-container">

@@ -6,7 +6,7 @@ import ImgUpload from "./components/imgUpload/ImgUpload";
 function App() {
   return (
     <>
-      <ImgUpload />
+      <Landing />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import "./Main.css";
+import { Link } from "react-router-dom";
 import { GiBee } from "react-icons/gi";
 import { FaBlackberry } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
@@ -8,9 +9,11 @@ const Main = () => {
   return (
     <div className="container">
       <div className="header">
-        <h2>
-          Bee<span>Well.</span>
-        </h2>
+        <Link to="/">
+          <h2>
+            Bee<span>Well.</span>
+          </h2>
+        </Link>
       </div>
       <div className="cards-container">
         <div className="card">
@@ -64,11 +67,13 @@ const Main = () => {
           Status: <span>Healthy</span>
         </h2>
       </div>
-      <button className="cta-btn">
-        <HiLightBulb className="icon" />
-        Predict with image.
-        <AiOutlineArrowRight className="icon" />
-      </button>
+      <Link to="/upload">
+        <button className="cta-btn">
+          <HiLightBulb className="icon" />
+          Predict with image.
+          <AiOutlineArrowRight className="icon" />
+        </button>
+      </Link>
     </div>
   );
 };
