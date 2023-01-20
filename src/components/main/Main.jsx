@@ -7,6 +7,8 @@ import { FaBlackberry } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import beeImg from "../../assets/bee.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const solutions = {
   "ant problems": [
@@ -20,6 +22,11 @@ const solutions = {
     "Mite away quick strips: One Strip in brood box",
   ],
   healthy: ["Good job on bee keeping"],
+  "hive being robbed": [
+    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, incidunt?",
+    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, incidunt?",
+    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, incidunt?",
+  ],
 };
 
 const Main = () => {
@@ -28,6 +35,7 @@ const Main = () => {
   const [loading, setLoading] = useState(false);
   const [solns, setSolns] = useState([]);
   useEffect(() => {
+    AOS.init();
     const fetchImage = async () => {
       setLoading(true);
       const data = await axios.get("http://192.168.75.83:5000/get_data");
@@ -118,7 +126,7 @@ const Main = () => {
         </Link>
       </div>
       {modal && (
-        <div className="modal">
+        <div className="modal" data-aos="fade-down">
           <div className="modal-main">
             <div className="content">
               <h3>Prediction: {image.prediction}</h3>

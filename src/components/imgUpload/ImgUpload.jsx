@@ -88,15 +88,19 @@ const ImgUpload = () => {
           </button>
         </form>
       </div>
-      <div className="preview">
-        <h2>Preview</h2>
-        <img src={image.preview} className="preview-img" alt="" />
-      </div>
-      <div className="prediction">
-        <h2>
-          Status: <span>{response.prediction}</span>
-        </h2>
-      </div>
+      {response && (
+        <>
+          <div className="preview">
+            <h2>Preview</h2>
+            <img src={image.preview} className="preview-img" alt="" />
+          </div>
+          <div className="prediction">
+            <h2>
+              Status: <span>{response.prediction}</span>
+            </h2>
+          </div>
+        </>
+      )}
     </div>
   );
 };
