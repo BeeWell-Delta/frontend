@@ -1,15 +1,57 @@
 import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "./ImgUpload.css";
 const ImgUpload = () => {
   const [image, setImage] = useState({ preview: "", raw: "" });
-
+  const [response, setResponse] = useState({});
   const handleUpload = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", image.raw);
 
-    // await fetch("YOUR_URL", {
+    let formData = new FormData();
+    // formData.append("name", "name_input");
+
+    formData.append("file", image.raw);
+    console.log(image);
+
+    // const url = "http://192.168.174.83:5000/predict";
+    // const response = await fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     // "Content-type": "multipart/form-data",
+    //   },
+    //   body: formData,
+    // });
+
+    // console.log(response);
+
+    // const formData = new FormData();
+    // formData.append("image", image.raw);
+
+    try {
+      const res = await axios.post(
+        "http://192.168.75.83:5000/predict",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const data = await res.data;
+      setResponse(data);
+      // const data = await res.json();
+      console.log(data);
+    } catch (ex) {
+      console.log(ex);
+    }
+
+    // axios
+    //   .post("http://192.168.75.83:5000/predict", { body: formData })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+
+    // await fetch("http://192.168.75.83:5000/predict", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "multipart/form-data",
@@ -52,7 +94,7 @@ const ImgUpload = () => {
       </div>
       <div className="prediction">
         <h2>
-          Status: <span>Healthy</span>
+          Status: <span>{response.prediction}</span>
         </h2>
       </div>
     </div>
